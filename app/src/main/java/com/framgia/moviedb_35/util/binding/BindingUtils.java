@@ -2,7 +2,6 @@ package com.framgia.moviedb_35.util.binding;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -34,8 +33,7 @@ public class BindingUtils {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.ic_loading);
         requestOptions.error(R.drawable.ic_loading);
-        String imageLink = StringUtils.getImageLink(IMAGE_SIZE_200, url);
-        Log.d("kiemtra",imageLink + "");
+        String imageLink = StringUtils.getImageUrl(IMAGE_SIZE_200, url);
         Glide.with(imageView.getContext())
                 .load(imageLink)
                 .apply(requestOptions)

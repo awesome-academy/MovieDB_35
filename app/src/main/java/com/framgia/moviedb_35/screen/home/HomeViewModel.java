@@ -5,7 +5,7 @@ import android.databinding.ObservableList;
 
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
-import com.framgia.moviedb_35.util.Constant;
+import com.framgia.moviedb_35.util.Constants;
 
 import java.util.List;
 
@@ -18,9 +18,10 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeViewModel {
     private MovieRepository mMovieRepository;
     public final ObservableList<Movie> popularMoviesObservable = new ObservableArrayList<>();
-    public final ObservableList<Movie> UpComingMoviesObservable = new ObservableArrayList<>();
-    public final ObservableList<Movie> NowPlayingMoviesObservable = new ObservableArrayList<>();
-    public final ObservableList<Movie> TopRateMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> upComingMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> nowPlayingMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> topRateMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> trendingMoviesObservable = new ObservableArrayList<>();
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public HomeViewModel(MovieRepository movieRepository) {
@@ -33,10 +34,24 @@ public class HomeViewModel {
         loadNowPlayingMovies();
         loadTopRateMovies();
         loadUpComingMovies();
+        loadTrendingMovies();
+    }
+
+    private void loadTrendingMovies(){
+        Disposable disposable = mMovieRepository.getTrendingMovies()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Movie>>() {
+                    @Override
+                    public void accept(List<Movie> movies) throws Exception {
+                        trendingMoviesObservable.addAll(movies);
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 
     private void loadPopularMovies() {
-        Disposable disposable = mMovieRepository.getPopularMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getPopularMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
@@ -49,39 +64,39 @@ public class HomeViewModel {
     }
 
     private void loadNowPlayingMovies() {
-        Disposable disposable = mMovieRepository.getNowPlayingMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getNowPlayingMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
                     public void accept(List<Movie> movies) throws Exception {
-                        NowPlayingMoviesObservable.addAll(movies);
+                        nowPlayingMoviesObservable.addAll(movies);
                     }
                 });
         mCompositeDisposable.add(disposable);
     }
 
     private void loadUpComingMovies() {
-        Disposable disposable = mMovieRepository.getUpComingMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getUpComingMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
                     public void accept(List<Movie> movies) throws Exception {
-                        UpComingMoviesObservable.addAll(movies);
+                        upComingMoviesObservable.addAll(movies);
                     }
                 });
         mCompositeDisposable.add(disposable);
     }
 
     private void loadTopRateMovies() {
-        Disposable disposable = mMovieRepository.getTopRateMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getTopRateMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
                     public void accept(List<Movie> movies) throws Exception {
-                        TopRateMoviesObservable.addAll(movies);
+                        topRateMoviesObservable.addAll(movies);
                     }
                 });
         mCompositeDisposable.add(disposable);
