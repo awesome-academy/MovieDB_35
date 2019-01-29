@@ -1,4 +1,4 @@
-package com.example.moviedb_35;
+package com.framgia.moviedb_35;
 
 import org.junit.Test;
 

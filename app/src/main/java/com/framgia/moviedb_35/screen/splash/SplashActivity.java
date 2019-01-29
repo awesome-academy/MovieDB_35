@@ -1,9 +1,11 @@
-package com.example.moviedb_35;
+package com.framgia.moviedb_35.screen.splash;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import com.framgia.moviedb_35.R;
+
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
