@@ -8,5 +8,15 @@ import retrofit2.http.Query;
 
 public interface RetrofitRequest {
     @GET("/3/movie/popular")
-    Single<CategoryData> getPopular(@Query("page") int page);
+    Single<CategoryData> getPopularMovies(@Query("page") int page);
+
+    @GET("/3/movie/now_playing")
+    Single<CategoryData> getNowPlayingMovies(@Query("page") int page);
+
+    @GET("/3/movie/upcoming")
+    Single<CategoryData> getUpComingMovies(@Query("page") int page);
+
+    @GET("/3/movie/top_rated")
+    Single<CategoryData> getTopRateMovies(@Query("page") int page);
+
 }

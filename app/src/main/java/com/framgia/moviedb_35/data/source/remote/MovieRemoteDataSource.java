@@ -29,8 +29,38 @@ public class MovieRemoteDataSource implements MovieDataSource.Remote {
     }
 
     @Override
-    public Single<List<Movie>> getPopular(int page) {
-        return mRetrofitRequest.getPopular(page).map(new Function<CategoryData, List<Movie>>() {
+    public Single<List<Movie>> getPopularMovies(int page) {
+        return mRetrofitRequest.getPopularMovies(page).map(new Function<CategoryData, List<Movie>>() {
+            @Override
+            public List<Movie> apply(CategoryData categoryData) throws Exception {
+                return categoryData.getMovies();
+            }
+        });
+    }
+
+    @Override
+    public Single<List<Movie>> getNowPlayingMovies(int page) {
+        return mRetrofitRequest.getNowPlayingMovies(page).map(new Function<CategoryData, List<Movie>>() {
+            @Override
+            public List<Movie> apply(CategoryData categoryData) throws Exception {
+                return categoryData.getMovies();
+            }
+        });
+    }
+
+    @Override
+    public Single<List<Movie>> getUpComingMovies(int page) {
+        return mRetrofitRequest.getUpComingMovies(page).map(new Function<CategoryData, List<Movie>>() {
+            @Override
+            public List<Movie> apply(CategoryData categoryData) throws Exception {
+                return categoryData.getMovies();
+            }
+        });
+    }
+
+    @Override
+    public Single<List<Movie>> getTopRateMovies(int page) {
+        return mRetrofitRequest.getTopRateMovies(page).map(new Function<CategoryData, List<Movie>>() {
             @Override
             public List<Movie> apply(CategoryData categoryData) throws Exception {
                 return categoryData.getMovies();

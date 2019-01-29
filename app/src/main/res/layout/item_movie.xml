@@ -15,20 +15,20 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/card_view_image"
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="@dimen/dp_200"
-            android:layout_margin="@dimen/dp_8"
+            android:layout_width="@dimen/dp_250"
+            android:layout_height="@dimen/dp_170"
+            android:layout_marginLeft="@dimen/dp_12"
             app:cardCornerRadius="@dimen/dp_8"
-            app:cardElevation="@dimen/dp_20"
+            app:cardElevation="@dimen/dp_5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                imageUrl="itemViewModel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/splash_screen" />
+                android:src="@drawable/splash_screen"
+                app:imageUrl="@{itemViewModel.mMovieObservableField.get().getBackdropPath()}" />
 
         </android.support.v7.widget.CardView>
 
@@ -39,9 +39,10 @@
             android:layout_marginTop="@dimen/dp_8"
             android:gravity="center"
             android:maxLines="2"
+            android:text="@{itemViewModel.mMovieObservableField.get().getTitle()}"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_15"
+            android:textSize="@dimen/sp_12"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
