@@ -19,5 +19,7 @@ public interface MovieDataSource {
 
         Single<List<Movie>> getTopRateMovies(int page);
 
+        Single<Movie> getMovieDetail(int movieId, String append);
+
     }
 }

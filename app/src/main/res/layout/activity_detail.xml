@@ -11,14 +11,14 @@
 
         <fragment
             android:id="@+id/fragment_header_detail"
-            class="com.framgia.moviedb_35.screen.detail.HeaderDetailFragment"
+            android:name="com.framgia.moviedb_35.screen.detail.fragment.HeaderDetailFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_header_detail"></fragment>
 
         <fragment
             android:id="@+id/fragment_body_detail"
-            class="com.framgia.moviedb_35.screen.detail.BodyDetailFragment"
+            android:name="com.framgia.moviedb_35.screen.detail.fragment.BodyDetailFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_body_detail"></fragment>
