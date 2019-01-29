@@ -49,7 +49,7 @@ public class MovieRepository implements MovieDataSource.Local, MovieDataSource.R
     }
 
     @Override
-    public Single<List<Movie>> getTrendingMovies() {
-        return mMovieRemoteDataSource.getTrendingMovies();
+    public Single<Movie> getMovieDetail(int movieId, String append) {
+        return mMovieRemoteDataSource.getMovieDetail(movieId, append);
     }
 }

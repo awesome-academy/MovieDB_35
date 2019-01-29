@@ -13,7 +13,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         tools:context=".screen.MainActivity">
 
         <android.support.design.widget.AppBarLayout
@@ -109,7 +108,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp_10"
-                    app:bindMovies="@{viewModel.TopRateMoviesObservable}"
+                    app:bindMovies="@{viewModel.topRateMoviesObservable}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_top_rate" />
@@ -133,7 +132,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp_10"
-                    app:bindMovies="@{viewModel.UpComingMoviesObservable}"
+                    app:bindMovies="@{viewModel.upComingMoviesObservable}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_up_coming" />
@@ -157,7 +156,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp_10"
-                    app:bindMovies="@{viewModel.NowPlayingMoviesObservable}"
+                    app:bindMovies="@{viewModel.nowPlayingMoviesObservable}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_now_playing" />

@@ -1,74 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/image_back_ground"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_250"
-        android:scaleType="fitXY"
-        android:src="@drawable/splash_screen2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/image_avatar"
-        android:layout_width="@dimen/dp_120"
-        android:layout_height="@dimen/dp_170"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginTop="@dimen/dp_200"
-        android:scaleType="fitXY"
-        android:src="@drawable/back_ground"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <fragment
+            android:id="@+id/fragment_header_detail"
+            android:name="com.framgia.moviedb_35.screen.detail.fragment.HeaderDetailFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_header_detail"></fragment>
 
-    <TextView
-        android:id="@+id/text_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="@dimen/dp_25"
-        android:layout_marginLeft="@dimen/dp_10"
-        app:layout_constraintBottom_toBottomOf="@id/image_back_ground"
-        app:layout_constraintLeft_toRightOf="@id/image_avatar"
-        app:layout_constraintTop_toTopOf="@id/image_avatar" />
-
-    <TextView
-        android:id="@+id/text_category_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_movie"
-        app:layout_constraintLeft_toLeftOf="@id/text_title"
-        app:layout_constraintTop_toBottomOf="@+id/image_back_ground" />
-
-    <TextView
-        android:id="@+id/text_view_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/text_manufacturer_movie"
-        app:layout_constraintLeft_toLeftOf="@id/text_category_movie"
-        app:layout_constraintTop_toBottomOf="@+id/text_category_movie" />
-
-    <TextView
-        android:id="@+id/text_manufacturer_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/rating_bar"
-        app:layout_constraintLeft_toLeftOf="@id/text_view_movie"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_movie" />
-
-    <RatingBar
-        android:id="@+id/rating_bar"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/text_manufacturer_movie"
-        app:layout_constraintTop_toBottomOf="@+id/text_manufacturer_movie" />
-</android.support.constraint.ConstraintLayout>
+        <fragment
+            android:id="@+id/fragment_body_detail"
+            android:name="com.framgia.moviedb_35.screen.detail.fragment.BodyDetailFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_body_detail"></fragment>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

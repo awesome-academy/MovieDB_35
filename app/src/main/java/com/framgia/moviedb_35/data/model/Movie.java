@@ -1,5 +1,6 @@
 package com.framgia.moviedb_35.data.model;
 
+import com.framgia.moviedb_35.data.source.remote.response.VideoResult;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -32,11 +33,16 @@ public class Movie {
     @Expose
     private int mRuntime;
 
+    @SerializedName("videos")
+    @Expose
+    private VideoResult mVideoResult;
+
     public Movie() {
     }
 
     public Movie(int id, String backdropPath, String title,
-                 String overview, String posterPath, String releaseDate, int runtime) {
+                 String overview, String posterPath, String releaseDate, int runtime,
+                 VideoResult videoResult) {
         mId = id;
         mBackdropPath = backdropPath;
         mTitle = title;
@@ -44,6 +50,7 @@ public class Movie {
         mPosterPath = posterPath;
         mReleaseDate = releaseDate;
         mRuntime = runtime;
+        mVideoResult = videoResult;
     }
 
     public int getId() {
@@ -100,5 +107,13 @@ public class Movie {
 
     public void setRuntime(int runtime) {
         mRuntime = runtime;
+    }
+
+    public VideoResult getVideoResult() {
+        return mVideoResult;
+    }
+
+    public void setVideoResult(VideoResult videoResult) {
+        mVideoResult = videoResult;
     }
 }

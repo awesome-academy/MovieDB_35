@@ -1,9 +1,11 @@
 package com.framgia.moviedb_35.data.source.remote.service;
 
+import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.source.remote.response.CategoryData;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RetrofitRequest {
@@ -19,6 +21,8 @@ public interface RetrofitRequest {
     @GET("/3/movie/top_rated")
     Single<CategoryData> getTopRateMovies(@Query("page") int page);
 
-    @GET("/3/movie/trending/week")
-    Single<CategoryData> getTrendingMovies();
+    @GET("/3/movie/{id}")
+    Single<Movie> getMovieDetail(@Path("id") int movieId,
+                                 @Query("append_to_response") String append);
+
 }

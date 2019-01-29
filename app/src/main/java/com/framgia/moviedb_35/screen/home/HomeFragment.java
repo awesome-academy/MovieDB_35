@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.ItemClic
                 container, false);
         mHomeBinding.setViewModel(mHomeViewModel);
         setAdapter();
-
     }
 
     private void setAdapter() {
@@ -66,7 +65,6 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.ItemClic
         mNowPlayingAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
         mNowPlayingAdapter.setItemClickListener(this);
         nowPlayingRecycler.setAdapter(mNowPlayingAdapter);
-
 
         RecyclerView topRateRecycler = mHomeBinding.recyclerTopRate;
         setLayoutManager(topRateRecycler);
@@ -89,6 +87,6 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.ItemClic
 
     @Override
     public void onMovieItemClick(Movie movie) {
-        startActivity(DetailActivity.getIntent(getActivity()));
+        startActivity(DetailActivity.getIntent(getActivity(), movie));
     }
 }

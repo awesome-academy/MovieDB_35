@@ -16,12 +16,12 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel {
+    public static final String BUNDLE_KEY = "BUNDLE_KEY";
     private MovieRepository mMovieRepository;
     public final ObservableList<Movie> popularMoviesObservable = new ObservableArrayList<>();
     public final ObservableList<Movie> upComingMoviesObservable = new ObservableArrayList<>();
     public final ObservableList<Movie> nowPlayingMoviesObservable = new ObservableArrayList<>();
     public final ObservableList<Movie> topRateMoviesObservable = new ObservableArrayList<>();
-    public final ObservableList<Movie> trendingMoviesObservable = new ObservableArrayList<>();
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public HomeViewModel(MovieRepository movieRepository) {
@@ -34,20 +34,6 @@ public class HomeViewModel {
         loadNowPlayingMovies();
         loadTopRateMovies();
         loadUpComingMovies();
-        loadTrendingMovies();
-    }
-
-    private void loadTrendingMovies(){
-        Disposable disposable = mMovieRepository.getTrendingMovies()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Movie>>() {
-                    @Override
-                    public void accept(List<Movie> movies) throws Exception {
-                        trendingMoviesObservable.addAll(movies);
-                    }
-                });
-        mCompositeDisposable.add(disposable);
     }
 
     private void loadPopularMovies() {
@@ -56,7 +42,7 @@ public class HomeViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
-                    public void accept(List<Movie> movies) {
+                    public void accept(List<Movie> movies) throws Exception {
                         popularMoviesObservable.addAll(movies);
                     }
                 });

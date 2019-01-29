@@ -64,6 +64,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public void replaceData(List<Movie> movies) {
         mMovies.clear();
         mMovies.addAll(movies);
+        notifyDataSetChanged();
     }
 
     interface ItemClickListener {
