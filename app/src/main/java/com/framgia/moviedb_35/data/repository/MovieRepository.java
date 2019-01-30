@@ -1,5 +1,6 @@
 package com.framgia.moviedb_35.data.repository;
 
+import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.source.MovieDataSource;
 import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
@@ -46,6 +47,11 @@ public class MovieRepository implements MovieDataSource.Local, MovieDataSource.R
     @Override
     public Single<List<Movie>> getTopRateMovies(int page) {
         return mMovieRemoteDataSource.getTopRateMovies(page);
+    }
+
+    @Override
+    public Single<List<Genre>> getGenres() {
+        return mMovieRemoteDataSource.getGenres();
     }
 
     @Override

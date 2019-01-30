@@ -1,9 +1,11 @@
 package com.framgia.moviedb_35.data.source.remote;
 
 import com.framgia.moviedb_35.BuildConfig;
+import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.source.MovieDataSource;
 import com.framgia.moviedb_35.data.source.remote.response.CategoryData;
+import com.framgia.moviedb_35.data.source.remote.response.GenreResult;
 import com.framgia.moviedb_35.data.source.remote.service.RetrofitRequest;
 import com.framgia.moviedb_35.data.source.remote.service.SettingRetrofitClient;
 
@@ -66,6 +68,17 @@ public class MovieRemoteDataSource implements MovieDataSource.Remote {
                 return categoryData.getMovies();
             }
         });
+    }
+
+    @Override
+    public Single<List<Genre>> getGenres() {
+        return mRetrofitRequest.getGenre()
+                .map(new Function<GenreResult, List<Genre>>() {
+                    @Override
+                    public List<Genre> apply(GenreResult genreResult) {
+                        return genreResult.getGenres();
+                    }
+                });
     }
 
     @Override

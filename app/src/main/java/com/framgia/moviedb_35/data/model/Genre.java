@@ -1,5 +1,7 @@
 package com.framgia.moviedb_35.data.model;
 
+import android.net.Uri;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,7 +13,14 @@ public class Genre {
     @Expose
     private String mName;
 
-    public Genre() {
+    private Uri mImageUrl;
+
+    public Uri getImage() {
+        return mImageUrl;
+    }
+
+    public void setImage(Uri imageUrl) {
+        mImageUrl = imageUrl;
     }
 
     public Genre(String id, String name) {

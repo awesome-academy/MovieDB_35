@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.framgia.moviedb_35.screen.genres.ItemGenresListViewModel" />
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:onClick="@{viewModel::onItemClicked}"
+        card_view:cardCornerRadius="@dimen/dp_8"
+        card_view:cardElevation="@dimen/dp_8">
+
+        <ImageView
+            bindImageGenre="@{viewModel.mGenresObservableField."
+            android:layout_width="@dimen/dp_400"
+            android:layout_height="@dimen/dp_200"
+            android:scaleType="fitXY"
+            android:src="@color/color_red_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{viewModel.mGenresObservableField.name}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold" />
+    </android.support.v7.widget.CardView>
+</layout>
