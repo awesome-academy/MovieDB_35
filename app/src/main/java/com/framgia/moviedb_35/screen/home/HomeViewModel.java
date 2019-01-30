@@ -5,7 +5,7 @@ import android.databinding.ObservableList;
 
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
-import com.framgia.moviedb_35.util.Constant;
+import com.framgia.moviedb_35.util.Constants;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class HomeViewModel {
     }
 
     private void loadPopularMovies() {
-        Disposable disposable = mMovieRepository.getPopularMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getPopularMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
@@ -49,7 +49,7 @@ public class HomeViewModel {
     }
 
     private void loadNowPlayingMovies() {
-        Disposable disposable = mMovieRepository.getNowPlayingMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getNowPlayingMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
@@ -62,7 +62,7 @@ public class HomeViewModel {
     }
 
     private void loadUpComingMovies() {
-        Disposable disposable = mMovieRepository.getUpComingMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getUpComingMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
@@ -75,7 +75,7 @@ public class HomeViewModel {
     }
 
     private void loadTopRateMovies() {
-        Disposable disposable = mMovieRepository.getTopRateMovies(Constant.INDEX_UNIT)
+        Disposable disposable = mMovieRepository.getTopRateMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {

@@ -10,6 +10,6 @@ public class StringUtils {
     }
 
     public static String getImageLink(int size, String url) {
-        return StringUtils.append(Constant.IMAGE_LINK, String.valueOf(size), Constant.SLASH, url);
+        return StringUtils.append(Constants.IMAGE_LINK, String.valueOf(size), Constants.SLASH, url);
     }
 }

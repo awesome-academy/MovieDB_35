@@ -8,4 +8,6 @@
     <string name="title_top_rate">Top rate</string>
     <string name="title_up_coming">Up coming</string>
     <string name="title_now_playing">Now playing</string>
+    <string name="title_action">Action</string>
+    <string name="title_categories">Categories</string>
 </resources>
