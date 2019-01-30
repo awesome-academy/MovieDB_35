@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.framgia.moviedb_35.screen.splash.SplashActivity">
+        <activity android:name=".screen.MainActivity"/>
+        <activity android:name=".screen.splash.IntroductionActivity"/>
+        <activity android:name="com.framgia.moviedb_35.screen.splash.SplashActivity"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
