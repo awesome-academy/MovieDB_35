@@ -13,6 +13,7 @@ import com.framgia.moviedb_35.screen.MainActivity;
 public class IntroductionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
