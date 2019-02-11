@@ -8,4 +8,8 @@ public class StringUtils {
         }
         return builder.toString();
     }
+
+    public static String getImageLink(int size, String url) {
+        return StringUtils.append(Constant.IMAGE_LINK, String.valueOf(size), Constant.SLASH, url);
+    }
 }

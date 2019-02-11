@@ -1,155 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".screen.MainActivity">
+<layout>
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <data>
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="@color/color_base_white"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <variable
+            name="viewModel"
+            type="com.framgia.moviedb_35.screen.home.HomeViewModel" />
+    </data>
 
-            <ImageView
-                android:id="@+id/backdrop"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_250"
-                android:scaleType="fitXY"
-                android:src="@drawable/background"
-                app:layout_collapseMode="parallax" />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0.8"
-        android:backgroundTint="@color/color_base_white"
-        android:src="@drawable/ic_play_circle_filled_red"
-        app:layout_anchor="@+id/app_bar_layout"
-        app:layout_anchorGravity="center_horizontal|center">
-
-    </android.support.design.widget.FloatingActionButton>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:fitsSystemWindows="true"
+        tools:context=".screen.MainActivity">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <TextView
-                android:id="@+id/text_popular"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:fontFamily="@font/patrick_hand_sc"
-                android:text="@string/title_popular"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_30"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="@color/color_base_white"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_popular"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_popular" />
+                <ImageView
+                    android:id="@+id/backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_250"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/background"
+                    app:layout_collapseMode="parallax" />
 
-            <TextView
-                android:id="@+id/text_top_rate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:fontFamily="@font/patrick_hand_sc"
-                android:text="@string/title_top_rate"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_30"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_popular" />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_top_rate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_top_rate" />
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
 
-            <TextView
-                android:id="@+id/text_up_coming"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:fontFamily="@font/patrick_hand_sc"
-                android:text="@string/title_up_coming"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_30"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_top_rate" />
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:backgroundTint="@color/color_base_white"
+            android:src="@drawable/ic_play_circle_filled_red"
+            app:layout_anchor="@+id/app_bar_layout"
+            app:layout_anchorGravity="center_horizontal|center">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_up_coming"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_up_coming" />
+        </android.support.design.widget.FloatingActionButton>
 
-            <TextView
-                android:id="@+id/text_now_playing"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:fontFamily="@font/patrick_hand_sc"
-                android:text="@string/title_now_playing"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_30"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_up_coming" />
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_now_playing"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_now_playing" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v4.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/text_popular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:fontFamily="@font/patrick_hand_sc"
+                    android:text="@string/title_popular"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.design.widget.CoordinatorLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_popular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_20"
+                    app:bindMovies="@{viewModel.popularMoviesObservable}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_popular" />
+
+                <TextView
+                    android:id="@+id/text_top_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:fontFamily="@font/patrick_hand_sc"
+                    android:text="@string/title_top_rate"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_popular" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_top_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_top_rate" />
+
+                <TextView
+                    android:id="@+id/text_up_coming"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:fontFamily="@font/patrick_hand_sc"
+                    android:text="@string/title_up_coming"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_top_rate" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_up_coming"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_up_coming" />
+
+                <TextView
+                    android:id="@+id/text_now_playing"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:fontFamily="@font/patrick_hand_sc"
+                    android:text="@string/title_now_playing"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_up_coming" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_now_playing"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_now_playing" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
