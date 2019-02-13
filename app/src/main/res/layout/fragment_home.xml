@@ -84,7 +84,7 @@
                     android:id="@+id/recycler_popular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_20"
+                    android:padding="@dimen/dp_10"
                     app:bindMovies="@{viewModel.popularMoviesObservable}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,8 @@
                     android:id="@+id/recycler_top_rate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_20"
+                    android:padding="@dimen/dp_10"
+                    app:bindMovies="@{viewModel.TopRateMoviesObservable}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_top_rate" />
@@ -131,7 +132,8 @@
                     android:id="@+id/recycler_up_coming"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_20"
+                    android:padding="@dimen/dp_10"
+                    app:bindMovies="@{viewModel.UpComingMoviesObservable}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_up_coming" />
@@ -154,7 +156,8 @@
                     android:id="@+id/recycler_now_playing"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_20"
+                    android:padding="@dimen/dp_10"
+                    app:bindMovies="@{viewModel.NowPlayingMoviesObservable}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_now_playing" />

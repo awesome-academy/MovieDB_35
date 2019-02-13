@@ -8,7 +8,7 @@ import com.framgia.moviedb_35.data.model.Movie;
 public class ItemHomeViewModel extends BaseObservable {
     public ObservableField<Movie> mMovieObservableField = new ObservableField<>();
 
-    public void setMovie(Movie movie){
+    public void setMovie(Movie movie) {
         mMovieObservableField.set(movie);
     }
 }

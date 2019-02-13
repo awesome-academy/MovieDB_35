@@ -29,7 +29,22 @@ public class MovieRepository implements MovieDataSource.Local, MovieDataSource.R
     }
 
     @Override
-    public Single<List<Movie>> getPopular(int page) {
-        return mMovieRemoteDataSource.getPopular(page);
+    public Single<List<Movie>> getPopularMovies(int page) {
+        return mMovieRemoteDataSource.getPopularMovies(page);
+    }
+
+    @Override
+    public Single<List<Movie>> getNowPlayingMovies(int page) {
+        return mMovieRemoteDataSource.getNowPlayingMovies(page);
+    }
+
+    @Override
+    public Single<List<Movie>> getUpComingMovies(int page) {
+        return mMovieRemoteDataSource.getUpComingMovies(page);
+    }
+
+    @Override
+    public Single<List<Movie>> getTopRateMovies(int page) {
+        return mMovieRemoteDataSource.getTopRateMovies(page);
     }
 }

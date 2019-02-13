@@ -11,6 +11,13 @@ public interface MovieDataSource {
     }
 
     interface Remote extends MovieDataSource {
-        Single<List<Movie>> getPopular(int page);
+        Single<List<Movie>> getPopularMovies(int page);
+
+        Single<List<Movie>> getNowPlayingMovies(int page);
+
+        Single<List<Movie>> getUpComingMovies(int page);
+
+        Single<List<Movie>> getTopRateMovies(int page);
+
     }
 }

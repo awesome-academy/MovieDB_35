@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     private HomeViewModel mHomeViewModel;
     private FragmentHomeBinding mHomeBinding;
-    private CategoriesAdapter mPopularAdapter;
+    private CategoriesAdapter mPopularAdapter, mNowPlayingAdapter, mTopRateAdapter, mUpComingAdapter;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -54,7 +55,30 @@ public class HomeFragment extends Fragment {
 
     private void setAdapter() {
         RecyclerView popularRecycler = mHomeBinding.recyclerPopular;
-        mPopularAdapter = new CategoriesAdapter(new ArrayList<Movie>());
+        setLayoutManager(popularRecycler);
+        mPopularAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
         popularRecycler.setAdapter(mPopularAdapter);
+
+        RecyclerView nowPlayingRecycler = mHomeBinding.recyclerNowPlaying;
+        setLayoutManager(nowPlayingRecycler);
+        mNowPlayingAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
+        nowPlayingRecycler.setAdapter(mNowPlayingAdapter);
+
+
+        RecyclerView topRateRecycler = mHomeBinding.recyclerTopRate;
+        setLayoutManager(topRateRecycler);
+        mTopRateAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
+        topRateRecycler.setAdapter(mTopRateAdapter);
+
+        RecyclerView upComingRecycler = mHomeBinding.recyclerUpComing;
+        setLayoutManager(upComingRecycler);
+        mUpComingAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
+        upComingRecycler.setAdapter(mUpComingAdapter);
+    }
+
+    private void setLayoutManager(RecyclerView recyclerView){
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
     }
 }
