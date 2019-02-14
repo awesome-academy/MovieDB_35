@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_movie_black"
         android:title="@string/title_movie"/>
     <item
-        android:id="@+id/navigation_music"
+        android:id="@+id/navigation_category"
         android:icon="@drawable/ic_category_black"
         android:title="@string/title_category"/>
     <item
