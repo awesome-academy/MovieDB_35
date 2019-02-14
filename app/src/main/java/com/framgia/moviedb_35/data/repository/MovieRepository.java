@@ -47,9 +47,4 @@ public class MovieRepository implements MovieDataSource.Local, MovieDataSource.R
     public Single<List<Movie>> getTopRateMovies(int page) {
         return mMovieRemoteDataSource.getTopRateMovies(page);
     }
-
-    @Override
-    public Single<List<Movie>> getTrendingMovies() {
-        return mMovieRemoteDataSource.getTrendingMovies();
-    }
 }
