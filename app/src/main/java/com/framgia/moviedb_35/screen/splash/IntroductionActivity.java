@@ -17,7 +17,7 @@ public class IntroductionActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_activity);
+        setContentView(R.layout.activity_splash);
         mImageView = findViewById(R.id.image_button);
         mImageView.setOnClickListener(this);
     }

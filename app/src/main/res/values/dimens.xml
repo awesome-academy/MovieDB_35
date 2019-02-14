@@ -16,4 +16,6 @@
     <dimen name="dp_250">250dp</dimen>
     <dimen name="dp_170">170dp</dimen>
     <dimen name="dp_400">400dp</dimen>
+    <dimen name="dp_25">25dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
 </resources>

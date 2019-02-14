@@ -9,7 +9,7 @@ public class StringUtils {
         return builder.toString();
     }
 
-    public static String getImageLink(int size, String url) {
-        return StringUtils.append(Constants.IMAGE_LINK, String.valueOf(size), Constants.SLASH, url);
+    public static String getImageUrl(int size, String childUrl) {
+        return StringUtils.append(Constants.IMAGE_LINK, String.valueOf(size), Constants.SLASH, childUrl);
     }
 }

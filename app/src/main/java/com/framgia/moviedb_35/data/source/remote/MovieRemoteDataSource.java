@@ -67,4 +67,14 @@ public class MovieRemoteDataSource implements MovieDataSource.Remote {
             }
         });
     }
+
+    @Override
+    public Single<List<Movie>> getTrendingMovies() {
+        return mRetrofitRequest.getTrendingMovies().map(new Function<CategoryData, List<Movie>>() {
+            @Override
+            public List<Movie> apply(CategoryData categoryData) throws Exception {
+                return categoryData.getMovies();
+            }
+        });
+    }
 }

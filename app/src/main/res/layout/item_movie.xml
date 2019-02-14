@@ -3,6 +3,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="itemViewModel"
             type="com.framgia.moviedb_35.screen.home.ItemHomeViewModel" />
@@ -26,6 +28,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:onClick="@{itemViewModel::itemClickListener}"
                 android:scaleType="fitXY"
                 android:src="@drawable/splash_screen"
                 app:imageUrl="@{itemViewModel.mMovieObservableField.get().getBackdropPath()}" />

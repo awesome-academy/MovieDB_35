@@ -18,9 +18,10 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeViewModel {
     private MovieRepository mMovieRepository;
     public final ObservableList<Movie> popularMoviesObservable = new ObservableArrayList<>();
-    public final ObservableList<Movie> UpComingMoviesObservable = new ObservableArrayList<>();
-    public final ObservableList<Movie> NowPlayingMoviesObservable = new ObservableArrayList<>();
-    public final ObservableList<Movie> TopRateMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> upComingMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> nowPlayingMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> topRateMoviesObservable = new ObservableArrayList<>();
+    public final ObservableList<Movie> trendingMoviesObservable = new ObservableArrayList<>();
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public HomeViewModel(MovieRepository movieRepository) {
@@ -33,6 +34,20 @@ public class HomeViewModel {
         loadNowPlayingMovies();
         loadTopRateMovies();
         loadUpComingMovies();
+        loadTrendingMovies();
+    }
+
+    private void loadTrendingMovies(){
+        Disposable disposable = mMovieRepository.getTrendingMovies()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Movie>>() {
+                    @Override
+                    public void accept(List<Movie> movies) throws Exception {
+                        trendingMoviesObservable.addAll(movies);
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 
     private void loadPopularMovies() {
@@ -55,7 +70,7 @@ public class HomeViewModel {
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
                     public void accept(List<Movie> movies) throws Exception {
-                        NowPlayingMoviesObservable.addAll(movies);
+                        nowPlayingMoviesObservable.addAll(movies);
                     }
                 });
         mCompositeDisposable.add(disposable);
@@ -68,7 +83,7 @@ public class HomeViewModel {
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
                     public void accept(List<Movie> movies) throws Exception {
-                        UpComingMoviesObservable.addAll(movies);
+                        upComingMoviesObservable.addAll(movies);
                     }
                 });
         mCompositeDisposable.add(disposable);
@@ -81,7 +96,7 @@ public class HomeViewModel {
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
                     public void accept(List<Movie> movies) throws Exception {
-                        TopRateMoviesObservable.addAll(movies);
+                        topRateMoviesObservable.addAll(movies);
                     }
                 });
         mCompositeDisposable.add(disposable);

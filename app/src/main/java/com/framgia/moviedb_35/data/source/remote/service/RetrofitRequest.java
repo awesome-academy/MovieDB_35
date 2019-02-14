@@ -19,4 +19,6 @@ public interface RetrofitRequest {
     @GET("/3/movie/top_rated")
     Single<CategoryData> getTopRateMovies(@Query("page") int page);
 
+    @GET("/3/movie/trending/week")
+    Single<CategoryData> getTrendingMovies();
 }
