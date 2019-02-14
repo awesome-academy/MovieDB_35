@@ -10,13 +10,13 @@ import com.framgia.moviedb_35.R;
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.databinding.ItemMovieBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
     private List<Movie> mMovies;
+    private ItemClickListener mClickListener;
 
-    public CategoriesAdapter(ArrayList<Movie> movies) {
+    public CategoriesAdapter(List<Movie> movies) {
         mMovies = movies;
     }
 
@@ -26,7 +26,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         ItemMovieBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.getContext()), R.layout.item_movie,
                 viewGroup, false);
-        return new ViewHolder(binding);
+        return new ViewHolder(binding, mClickListener);
     }
 
     @Override
@@ -43,10 +43,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         private ItemMovieBinding mBinding;
         private ItemHomeViewModel mItemMovieListViewModel;
 
-        public ViewHolder(ItemMovieBinding binding) {
+        public ViewHolder(ItemMovieBinding binding, ItemClickListener itemClickListener) {
             super(binding.getRoot());
             mBinding = binding;
-            mItemMovieListViewModel = new ItemHomeViewModel();
+            mItemMovieListViewModel = new ItemHomeViewModel(itemClickListener);
             mBinding.setItemViewModel(mItemMovieListViewModel);
         }
 
@@ -56,8 +56,17 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         }
     }
 
+    public CategoriesAdapter setItemClickListener(ItemClickListener itemClickListener) {
+        mClickListener = itemClickListener;
+        return this;
+    }
+
     public void replaceData(List<Movie> movies) {
         mMovies.clear();
         mMovies.addAll(movies);
+    }
+
+    interface ItemClickListener {
+        void onMovieItemClick(Movie movie);
     }
 }
