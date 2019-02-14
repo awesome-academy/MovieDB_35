@@ -19,6 +19,5 @@ public interface MovieDataSource {
 
         Single<List<Movie>> getTopRateMovies(int page);
 
-        Single<List<Movie>> getTrendingMovies();
     }
 }

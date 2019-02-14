@@ -7,10 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.framgia.moviedb_35.R;
+import com.framgia.moviedb_35.data.model.Movie;
 
 public class DetailActivity extends AppCompatActivity {
-    public static Intent getIntent(Context context){
-        Intent intent = new Intent(context,DetailActivity.class);
+    public static Intent getIntent(Context context, Movie movie) {
+        Intent intent = new Intent(context, DetailActivity.class);
         return intent;
     }
 
