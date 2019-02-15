@@ -1,5 +1,8 @@
 package com.framgia.moviedb_35.data.model;
 
+import com.framgia.moviedb_35.data.model.Company;
+import com.framgia.moviedb_35.data.model.Genre;
+import com.framgia.moviedb_35.data.model.Language;
 import com.framgia.moviedb_35.data.source.remote.response.CastResult;
 import com.framgia.moviedb_35.data.source.remote.response.VideoResult;
 import com.google.gson.annotations.Expose;

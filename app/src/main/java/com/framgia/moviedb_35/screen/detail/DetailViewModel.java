@@ -1,7 +1,11 @@
 package com.framgia.moviedb_35.screen.detail;
 
+import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
+import android.databinding.ObservableList;
 
+import com.framgia.moviedb_35.data.model.Actor;
+import com.framgia.moviedb_35.data.model.Company;
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
 import com.framgia.moviedb_35.util.StringUtils;
@@ -20,6 +24,8 @@ public class DetailViewModel {
     private static final int NUMBER_ONE = 1;
     private String nameGenres = "";
     public final ObservableField<Movie> movieObservable = new ObservableField<>();
+    public final ObservableList<Actor> actorObservable = new ObservableArrayList<>();
+    public final ObservableList<Company> companiesObservable = new ObservableArrayList<>();
     public final ObservableField<String> mObservableGenres = new ObservableField<>();
     public final ObservableField<String> mObservableRunTime = new ObservableField<>();
     public final ObservableField<String> mObservableRelease = new ObservableField<>();
@@ -40,6 +46,8 @@ public class DetailViewModel {
                     public void accept(Movie movie) {
                         movieObservable.set(movie);
                         setMovieObservable(movie);
+                        actorObservable.addAll(movie.getCastResult().getCasts());
+                        companiesObservable.addAll(movie.getProductionCompanies());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -59,7 +67,9 @@ public class DetailViewModel {
             }
         }
         mObservableGenres.set(nameGenres);
-        mObservableRunTime.set(StringUtils.append(String.valueOf(movie.getRuntime()),MOVIE_MINUTES));
-        mObservableRelease.set(StringUtils.append(movie.getReleaseDate(),MOVIE_RELEASE));
+        mObservableRunTime
+                .set(StringUtils.append(String.valueOf(movie.getRuntime()), MOVIE_MINUTES));
+        mObservableRelease
+                .set(StringUtils.append(movie.getReleaseDate(), MOVIE_RELEASE));
     }
 }

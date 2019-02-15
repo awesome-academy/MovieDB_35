@@ -11,6 +11,7 @@ import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
 import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
 import com.framgia.moviedb_35.data.source.remote.MovieRemoteDataSource;
+import com.framgia.moviedb_35.screen.detail.fragment.BodyDetailFragment;
 import com.framgia.moviedb_35.screen.detail.fragment.HeaderDetailFragment;
 
 import static com.framgia.moviedb_35.screen.home.HomeViewModel.BUNDLE_KEY;
@@ -20,6 +21,7 @@ public class DetailActivity extends AppCompatActivity {
     private String mMovieId;
     private DetailViewModel mViewModel;
     private HeaderDetailFragment mHeaderDetailFragment;
+    private BodyDetailFragment mBodyDetailFragment;
 
     public static Intent getIntent(Context context, Movie movie) {
         Intent intent = new Intent(context, DetailActivity.class);
@@ -34,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         initViewModel();
+        setViewModelForFragment();
     }
 
     private void initViewModel() {
@@ -41,12 +44,14 @@ public class DetailActivity extends AppCompatActivity {
         MovieRepository movieRepository = MovieRepository.getInstance(
                 MovieRemoteDataSource.getInstance(), MovieLocalDataSource.getInstance());
         mViewModel = new DetailViewModel(Integer.valueOf(mMovieId), movieRepository);
-        setViewModelForFragment(mViewModel);
     }
 
-    private void setViewModelForFragment(DetailViewModel detailViewModel) {
+    private void setViewModelForFragment() {
         mHeaderDetailFragment = (HeaderDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_header_detail);
-        mHeaderDetailFragment.setViewModel(detailViewModel);
+        mHeaderDetailFragment.setViewModel(mViewModel);
+        mBodyDetailFragment = (BodyDetailFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_body_detail);
+        mBodyDetailFragment.setViewModel(mViewModel);
     }
 }
