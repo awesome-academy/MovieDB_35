@@ -5,40 +5,17 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/text_over_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_20"
-        android:fontFamily="@font/patrick_hand_sc"
-        android:text="@string/title_overview"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_30"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <com.borjabravo.readmoretextview.ReadMoreTextView
-        android:id="@+id/text_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_15"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_over_view"
-        app:trimLength="50" />
-
-    <TextView
         android:id="@+id/text_cast_character"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_20"
         android:fontFamily="@font/patrick_hand_sc"
-        android:text="@string/title_cast_and_charactor"
+        android:text="@string/title_cast_and_character"
         android:textColor="@android:color/black"
         android:textSize="@dimen/sp_30"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_content" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_cast_and_character"
