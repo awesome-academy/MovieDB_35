@@ -1,6 +1,7 @@
 package com.framgia.moviedb_35.util.binding;
 
 import android.databinding.BindingAdapter;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
@@ -21,6 +22,12 @@ import java.util.List;
 
 public class BindingUtils {
     private static final int IMAGE_SIZE_200 = 1280;
+    private static final int ONE_HUNDRED = 100;
+    private static final int TWO_HUNDRED = 200;
+    private static final int ONE = 200;
+    private static final int PERCENTAGE_TO_ANIMATE_AVATAR = 20;
+    private static int mMaxScrollSize;
+    private static boolean mIsAvatarShown = true;
 
     @BindingAdapter({"app:bindMovies"})
     public static void setMoviesForRecyclerView(RecyclerView recyclerView,
@@ -81,5 +88,31 @@ public class BindingUtils {
                 .load(position)
                 .apply(requestOptions)
                 .into(imageView);
+    }
+
+    @BindingAdapter("app:animationImageView")
+    public static void setAnimation(ImageView imageView, AppBarLayout appBarLayout) {
+        mMaxScrollSize = appBarLayout.getTotalScrollRange();
+        appBarLayout.addOnOffsetChangedListener((appBarLayout1, i) -> {
+            if (mMaxScrollSize == 0)
+                mMaxScrollSize = appBarLayout.getTotalScrollRange();
+
+            int percentage = (Math.abs(i)) * ONE_HUNDRED / mMaxScrollSize;
+
+            if (percentage >= PERCENTAGE_TO_ANIMATE_AVATAR && mIsAvatarShown) {
+                mIsAvatarShown = false;
+                imageView.animate()
+                        .scaleY(0).scaleX(0)
+                        .setDuration(TWO_HUNDRED)
+                        .start();
+            }
+
+            if (percentage <= PERCENTAGE_TO_ANIMATE_AVATAR && !mIsAvatarShown) {
+                mIsAvatarShown = true;
+                imageView.animate()
+                        .scaleY(ONE).scaleX(ONE)
+                        .start();
+            }
+        });
     }
 }
