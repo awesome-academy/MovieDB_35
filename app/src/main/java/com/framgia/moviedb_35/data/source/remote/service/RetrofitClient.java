@@ -48,21 +48,18 @@ public class RetrofitClient {
     }
 
     private static Interceptor initInterceptor() {
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request originalRequest = chain.request();
-                HttpUrl originalHttpUrl = originalRequest.url();
+        return chain -> {
+            Request originalRequest = chain.request();
+            HttpUrl originalHttpUrl = originalRequest.url();
 
-                HttpUrl newUrl = originalHttpUrl.newBuilder()
-                        .addQueryParameter(QUERY_PARAMETER_API_KEY, API_KEY)
-                        .build();
+            HttpUrl newUrl = originalHttpUrl.newBuilder()
+                    .addQueryParameter(QUERY_PARAMETER_API_KEY, API_KEY)
+                    .build();
 
-                Request.Builder customBuilder = originalRequest.newBuilder().url(newUrl);
-                Request customRequest = customBuilder.build();
+            Request.Builder customBuilder = originalRequest.newBuilder().url(newUrl);
+            Request customRequest = customBuilder.build();
 
-                return chain.proceed(customRequest);
-            }
+            return chain.proceed(customRequest);
         };
     }
 }

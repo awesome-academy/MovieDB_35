@@ -2,6 +2,7 @@ package com.framgia.moviedb_35.data.source;
 
 import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
+import com.framgia.moviedb_35.data.model.Person;
 
 import java.util.List;
 
@@ -29,6 +30,8 @@ public interface MovieDataSource {
         Single<List<Movie>> getMoviesByProduce(int page, String produceId);
 
         Single<List<Movie>> getMoviesByActor(int page, String actorId);
+
+        Single<Person> getActorInfo(String actorId);
 
     }
 }

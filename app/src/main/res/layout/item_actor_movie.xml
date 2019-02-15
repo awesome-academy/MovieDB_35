@@ -25,6 +25,7 @@
                 android:layout_width="@dimen/dp_130"
                 android:layout_height="@dimen/dp_150"
                 android:scaleType="fitXY"
+                android:onClick="@{itemViewModel::itemClickListener}"
                 android:src="@drawable/splash_screen"
                 app:imageUrl="@{itemViewModel.mObservableField.getPosterPath()}" />
         </android.support.v7.widget.CardView>

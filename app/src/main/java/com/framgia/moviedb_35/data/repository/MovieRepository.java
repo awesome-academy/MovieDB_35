@@ -2,6 +2,7 @@ package com.framgia.moviedb_35.data.repository;
 
 import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
+import com.framgia.moviedb_35.data.model.Person;
 import com.framgia.moviedb_35.data.source.MovieDataSource;
 import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
 import com.framgia.moviedb_35.data.source.remote.MovieRemoteDataSource;
@@ -72,5 +73,10 @@ public class MovieRepository implements MovieDataSource.Local, MovieDataSource.R
     @Override
     public Single<List<Movie>> getMoviesByActor(int page, String actorId) {
         return mMovieRemoteDataSource.getMoviesByActor(page,actorId);
+    }
+
+    @Override
+    public Single<Person> getActorInfo(String actorId) {
+        return mMovieRemoteDataSource.getActorInfo(actorId);
     }
 }

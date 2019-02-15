@@ -81,7 +81,25 @@ public class BindingUtils {
                 .into(imageView);
     }
 
-    @BindingAdapter("bindGenres")
+    @BindingAdapter("app:circleImage")
+    public static void setCircleImage(ImageView imageView, String url) {
+        if (url == null || url.isEmpty()) {
+            imageView.setImageResource(R.drawable.ic_loading);
+        }
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.ic_loading);
+        requestOptions.error(R.drawable.ic_loading);
+        requestOptions.circleCropTransform();
+        requestOptions.circleCrop();
+        String imageLink = StringUtils.getImageUrl(IMAGE_SIZE_200, url);
+        Glide.with(imageView.getContext())
+                .load(imageLink)
+                .apply(requestOptions)
+                .into(imageView);
+    }
+
+
+    @BindingAdapter("app:bindGenres")
     public static void setGenresForRecyclerView(RecyclerView recyclerView, List<Genre> genres) {
         GenresAdapter adapter = (GenresAdapter) recyclerView.getAdapter();
         if (adapter != null) {

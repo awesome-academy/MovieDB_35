@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.framgia.moviedb_35.screen.actor.ActorViewModel" />
+    </data>
+
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_actor_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/patrick_hand_sc"
+                android:text="@string/cast_info"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_30"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_actor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_name"
+                android:textSize="@dimen/dp_15"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@id/text_actor_info"
+                app:layout_constraintTop_toBottomOf="@id/text_actor_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.personObservable.get().getName()}"
+                android:textSize="@dimen/dp_15"
+                app:layout_constraintLeft_toRightOf="@id/text_actor_name"
+                app:layout_constraintTop_toTopOf="@id/text_actor_name" />
+
+            <TextView
+                android:id="@+id/text_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_birthday"
+                android:textSize="@dimen/dp_15"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@id/text_actor_name"
+                app:layout_constraintTop_toBottomOf="@id/text_actor_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.personObservable.get().getBirthDay()}"
+                android:textSize="@dimen/dp_15"
+                app:layout_constraintLeft_toRightOf="@id/text_birthday"
+                app:layout_constraintTop_toTopOf="@id/text_birthday" />
+
+            <TextView
+                android:id="@+id/text_actor_over_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_over_view"
+                android:textSize="@dimen/dp_20"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@id/text_birthday"
+                app:layout_constraintTop_toBottomOf="@id/text_birthday" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.personObservable.get().getBioGraphy()}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_actor_over_view" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>
