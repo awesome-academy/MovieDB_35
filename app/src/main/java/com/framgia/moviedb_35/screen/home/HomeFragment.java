@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.ItemClic
                 container, false);
         mHomeBinding.setViewModel(mHomeViewModel);
         setAdapter();
-
     }
 
     private void setAdapter() {

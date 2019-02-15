@@ -16,6 +16,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel {
+    public static final String BUNDLE_KEY = "BUNDLE_KEY";
     private MovieRepository mMovieRepository;
     public final ObservableList<Movie> popularMoviesObservable = new ObservableArrayList<>();
     public final ObservableList<Movie> upComingMoviesObservable = new ObservableArrayList<>();
