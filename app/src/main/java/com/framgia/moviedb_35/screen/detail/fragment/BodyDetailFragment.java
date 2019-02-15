@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.framgia.moviedb_35.R;
-import com.framgia.moviedb_35.data.model.Actor;
-import com.framgia.moviedb_35.data.model.Company;
 import com.framgia.moviedb_35.databinding.FragmentBodyDetailBinding;
 import com.framgia.moviedb_35.screen.detail.DetailViewModel;
 import com.framgia.moviedb_35.screen.detail.adapter.CharacterAdapter;
@@ -39,12 +37,12 @@ public class BodyDetailFragment extends Fragment {
     private void setAdapter() {
         RecyclerView actorsRecycler = mFragmentBodyDetailBinding.recycleCastAndCharacter;
         setLayoutManager(actorsRecycler);
-        mCharacterAdapter = new CharacterAdapter(new ArrayList<Actor>(0));
+        mCharacterAdapter = new CharacterAdapter(new ArrayList<>(0));
         actorsRecycler.setAdapter(mCharacterAdapter);
 
         RecyclerView companiesRecycler = mFragmentBodyDetailBinding.recycleProduction;
         setLayoutManager(companiesRecycler);
-        mProductionAdapter = new ProductionAdapter(new ArrayList<Company>(0));
+        mProductionAdapter = new ProductionAdapter(new ArrayList<>(0));
         companiesRecycler.setAdapter(mProductionAdapter);
     }
 
