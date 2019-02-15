@@ -12,6 +12,7 @@ import com.framgia.moviedb_35.data.model.Actor;
 import com.framgia.moviedb_35.data.model.Company;
 import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
+import com.framgia.moviedb_35.screen.actor.ActorAdapter;
 import com.framgia.moviedb_35.screen.detail.adapter.CharacterAdapter;
 import com.framgia.moviedb_35.screen.detail.adapter.ProductionAdapter;
 import com.framgia.moviedb_35.screen.genres.GenresAdapter;
@@ -24,7 +25,7 @@ public class BindingUtils {
     private static final int IMAGE_SIZE_200 = 1280;
     private static final int ONE_HUNDRED = 100;
     private static final int TWO_HUNDRED = 200;
-    private static final int ONE = 200;
+    private static final int ONE = 1;
     private static final int PERCENTAGE_TO_ANIMATE_AVATAR = 20;
     private static int mMaxScrollSize;
     private static boolean mIsAvatarShown = true;
@@ -33,7 +34,16 @@ public class BindingUtils {
     public static void setMoviesForRecyclerView(RecyclerView recyclerView,
                                                 List<Movie> movies) {
         CategoriesAdapter adapter = (CategoriesAdapter) recyclerView.getAdapter();
-        if (adapter != null) {
+        if (adapter != null && movies != null) {
+            adapter.replaceData(movies);
+        }
+    }
+
+    @BindingAdapter({"app:bindMoviesForActor"})
+    public static void setMoviesForActorScreen(RecyclerView recyclerView,
+                                               List<Movie> movies) {
+        ActorAdapter adapter = (ActorAdapter) recyclerView.getAdapter();
+        if (adapter != null && movies != null) {
             adapter.replaceData(movies);
         }
     }
