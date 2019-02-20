@@ -10,8 +10,8 @@
     <string name="title_now_playing">Now playing</string>
     <string name="title_action">Action</string>
     <string name="title_categories">Categories</string>
-    <string name="title_overview">Overview</string>
-    <string name="title_cast_and_charactor"><![CDATA[Cast & Charactor]]></string>
+    <string name="title_over_view">Overview</string>
+    <string name="title_cast_and_character"><![CDATA[Cast & Charactor]]></string>
     <string name="title_producer">Producer</string>
     <string name="title_trailers">trailers</string>
 </resources>

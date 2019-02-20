@@ -3,28 +3,25 @@ package com.framgia.moviedb_35.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Genre {
-    @SerializedName("id")
+public class Language {
+    @SerializedName("iso_639_1")
     @Expose
-    private String mId;
+    private String mIso639;
     @SerializedName("name")
     @Expose
     private String mName;
 
-    public Genre() {
-    }
-
-    public Genre(String id, String name) {
-        mId = id;
+    public Language(String iso639, String name) {
+        mIso639 = iso639;
         mName = name;
     }
 
-    public String getId() {
-        return mId;
+    public String getIso639() {
+        return mIso639;
     }
 
-    public Genre setId(String id) {
-        mId = id;
+    public Language setIso639(String iso639) {
+        mIso639 = iso639;
         return this;
     }
 
@@ -32,7 +29,7 @@ public class Genre {
         return mName;
     }
 
-    public Genre setName(String name) {
+    public Language setName(String name) {
         mName = name;
         return this;
     }

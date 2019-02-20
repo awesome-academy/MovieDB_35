@@ -20,4 +20,6 @@
     <dimen name="dp_15">15dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_18">18dp</dimen>
 </resources>
