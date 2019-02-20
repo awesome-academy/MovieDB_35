@@ -7,7 +7,11 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.framgia.moviedb_35.R;
+import com.framgia.moviedb_35.data.model.Actor;
+import com.framgia.moviedb_35.data.model.Company;
 import com.framgia.moviedb_35.data.model.Movie;
+import com.framgia.moviedb_35.screen.detail.adapter.CharacterAdapter;
+import com.framgia.moviedb_35.screen.detail.adapter.ProductionAdapter;
 import com.framgia.moviedb_35.screen.home.CategoriesAdapter;
 import com.framgia.moviedb_35.util.StringUtils;
 
@@ -22,6 +26,24 @@ public class BindingUtils {
         CategoriesAdapter adapter = (CategoriesAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.replaceData(movies);
+        }
+    }
+
+    @BindingAdapter({"app:bindActors"})
+    public static void setActorsForRecyclerView(RecyclerView recyclerView,
+                                                List<Actor> actors) {
+        CharacterAdapter adapter = (CharacterAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.replaceData(actors);
+        }
+    }
+
+    @BindingAdapter({"app:bindProductions"})
+    public static void setCompanyForRecyclerView(RecyclerView recyclerView,
+                                                 List<Company> companies) {
+        ProductionAdapter adapter = (ProductionAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.replaceData(companies);
         }
     }
 

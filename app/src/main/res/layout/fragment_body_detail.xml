@@ -1,72 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout>
 
-    <TextView
-        android:id="@+id/text_cast_character"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_20"
-        android:fontFamily="@font/patrick_hand_sc"
-        android:text="@string/title_cast_and_character"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_30"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <data>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_cast_and_character"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_cast_character" />
+        <variable
+            name="viewModel"
+            type="com.framgia.moviedb_35.screen.detail.DetailViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/text_trailers"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_20"
-        android:fontFamily="@font/patrick_hand_sc"
-        android:text="@string/title_trailers"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_30"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recycle_cast_and_character" />
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_trailers"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_trailers" />
+        <TextView
+            android:id="@+id/text_cast_character"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:fontFamily="@font/patrick_hand_sc"
+            android:text="@string/title_cast_and_character"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_producer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_20"
-        android:fontFamily="@font/patrick_hand_sc"
-        android:text="@string/title_producer"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_30"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recycle_trailers" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_cast_and_character"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
+            app:bindActors="@{viewModel.actorObservable}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_cast_character" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_producer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_producer" />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_production"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:fontFamily="@font/patrick_hand_sc"
+            android:text="@string/title_production"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycle_cast_and_character" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_production"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
+            app:bindProductions="@{viewModel.companiesObservable}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_production" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
