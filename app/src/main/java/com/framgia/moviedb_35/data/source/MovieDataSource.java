@@ -1,5 +1,6 @@
 package com.framgia.moviedb_35.data.source;
 
+import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface MovieDataSource {
         Single<List<Movie>> getUpComingMovies(int page);
 
         Single<List<Movie>> getTopRateMovies(int page);
+
+        Single<List<Genre>> getGenres();
 
         Single<Movie> getMovieDetail(int movieId, String append);
 

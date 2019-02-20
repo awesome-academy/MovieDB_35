@@ -9,9 +9,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.framgia.moviedb_35.R;
 import com.framgia.moviedb_35.data.model.Actor;
 import com.framgia.moviedb_35.data.model.Company;
+import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.screen.detail.adapter.CharacterAdapter;
 import com.framgia.moviedb_35.screen.detail.adapter.ProductionAdapter;
+import com.framgia.moviedb_35.screen.genres.GenresAdapter;
 import com.framgia.moviedb_35.screen.home.CategoriesAdapter;
 import com.framgia.moviedb_35.util.StringUtils;
 
@@ -58,6 +60,25 @@ public class BindingUtils {
         String imageLink = StringUtils.getImageUrl(IMAGE_SIZE_200, url);
         Glide.with(imageView.getContext())
                 .load(imageLink)
+                .apply(requestOptions)
+                .into(imageView);
+    }
+
+    @BindingAdapter("app:bindGenres")
+    public static void setGenresForRecyclerView(RecyclerView recyclerView, List<Genre> genres) {
+        GenresAdapter adapter = (GenresAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.replaceData(genres);
+        }
+    }
+
+    @BindingAdapter("bindImageGenre")
+    public static void setImageGenre(ImageView imageView, int position) {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.ic_loading);
+        requestOptions.error(R.drawable.ic_loading);
+        Glide.with(imageView.getContext())
+                .load(position)
                 .apply(requestOptions)
                 .into(imageView);
     }

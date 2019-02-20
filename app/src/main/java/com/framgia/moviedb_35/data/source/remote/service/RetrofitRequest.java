@@ -2,6 +2,7 @@ package com.framgia.moviedb_35.data.source.remote.service;
 
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.source.remote.response.CategoryData;
+import com.framgia.moviedb_35.data.source.remote.response.GenreResult;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
@@ -24,5 +25,7 @@ public interface RetrofitRequest {
     @GET("/3/movie/{id}")
     Single<Movie> getMovieDetail(@Path("id") int movieId,
                                  @Query("append_to_response") String append);
+    @GET("/3/genre/movie/list")
+    Single<GenreResult> getGenre();
 
 }

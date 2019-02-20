@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.framgia.moviedb_35.R;
-import com.framgia.moviedb_35.screen.categories.CategoryFragment;
+import com.framgia.moviedb_35.screen.genres.GenresFragment;
 import com.framgia.moviedb_35.screen.home.HomeFragment;
 import com.framgia.moviedb_35.util.ActivityUtils;
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addCategoryFragment() {
-        mCurrentFragment = CategoryFragment.newInstance();
+        mCurrentFragment = GenresFragment.newInstance();
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                 mCurrentFragment, R.id.frame_fragments_container);
     }
