@@ -11,6 +11,7 @@ import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
 import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
 import com.framgia.moviedb_35.data.source.remote.MovieRemoteDataSource;
+import com.framgia.moviedb_35.screen.actor.ActorActivity;
 import com.framgia.moviedb_35.screen.detail.fragment.BodyDetailFragment;
 import com.framgia.moviedb_35.screen.detail.fragment.HeaderDetailFragment;
 import com.framgia.moviedb_35.screen.youtube.YoutubeActivity;
@@ -60,5 +61,10 @@ public class DetailActivity extends AppCompatActivity implements DetailNavigator
     @Override
     public void startActivityYoutube(String youtubeKey) {
         startActivity(YoutubeActivity.getIntent(this, youtubeKey));
+    }
+
+    @Override
+    public void startActivityActor(String key) {
+        startActivity(ActorActivity.getIntent(this));
     }
 }

@@ -58,4 +58,14 @@ public class MovieRepository implements MovieDataSource.Local, MovieDataSource.R
     public Single<Movie> getMovieDetail(int movieId, String append) {
         return mMovieRemoteDataSource.getMovieDetail(movieId, append);
     }
+
+    @Override
+    public Single<List<Movie>> getMoviesByProduce(int page, String produceId) {
+        return null;
+    }
+
+    @Override
+    public Single<List<Movie>> getMoviesByActor(int page, String actorId) {
+        return null;
+    }
 }

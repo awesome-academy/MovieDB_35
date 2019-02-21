@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".screen.detail.DetailActivity" />
         <activity android:name=".screen.youtube.YoutubeActivity" />
+        <activity android:name=".screen.actor.ActorActivity" />
     </application>
 
 </manifest>

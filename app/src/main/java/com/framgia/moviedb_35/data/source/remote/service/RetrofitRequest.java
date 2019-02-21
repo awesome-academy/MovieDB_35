@@ -25,6 +25,16 @@ public interface RetrofitRequest {
     @GET("/3/movie/{id}")
     Single<Movie> getMovieDetail(@Path("id") int movieId,
                                  @Query("append_to_response") String append);
+
+    @GET("/3/discover/movie")
+    Single<CategoryData> getMoviesByProduce(@Query("page") int page,
+                                              @Query("with_companies") String companyId);
+
+    @GET("/3/discover/movie")
+    Single<CategoryData> getMoviesByActor(@Query("page") int page,
+                                            @Query("with_cast") String actorId);
+
+
     @GET("/3/genre/movie/list")
     Single<GenreResult> getGenre();
 
