@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.framgia.moviedb_35.R;
 import com.framgia.moviedb_35.data.model.Genre;
+import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
 import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
 import com.framgia.moviedb_35.data.source.remote.MovieRemoteDataSource;
@@ -21,7 +22,9 @@ import com.framgia.moviedb_35.screen.home.HomeViewModel;
 
 import java.util.ArrayList;
 
-public class GenresFragment extends Fragment implements GenresAdapter.ItemClickListener {
+import static com.framgia.moviedb_35.screen.home.HomeViewModel.GENRE_SOURCE;
+
+public class GenresFragment extends Fragment implements GenreNavigator, GenresAdapter.ItemClickListener {
     private GenresAdapter mGenresAdapter;
     private FragmentGenresBinding mGenresBinding;
     private HomeViewModel mViewModel;
@@ -37,9 +40,7 @@ public class GenresFragment extends Fragment implements GenresAdapter.ItemClickL
                              @Nullable Bundle savedInstanceState) {
         mGenresBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_genres,
                 container, false);
-        MovieRepository movieRepository = MovieRepository.getInstance(
-                MovieRemoteDataSource.getInstance(), MovieLocalDataSource.getInstance());
-        mViewModel = new HomeViewModel(movieRepository);
+        initViewModel();
         mGenresBinding.setViewModel(mViewModel);
         setupAdapters();
         return mGenresBinding.getRoot();
@@ -58,6 +59,22 @@ public class GenresFragment extends Fragment implements GenresAdapter.ItemClickL
 
     @Override
     public void onGenreItemClick(Genre genre) {
+        showMovies(genre, GENRE_SOURCE);
+    }
 
+    @Override
+    public void showMovies(Genre genre, int getBy) {
+
+    }
+
+    @Override
+    public void showMovieDetail(Movie movie) {
+
+    }
+
+    private void initViewModel() {
+        MovieRepository movieRepository = MovieRepository.getInstance(
+                MovieRemoteDataSource.getInstance(), MovieLocalDataSource.getInstance());
+        mViewModel = new HomeViewModel(movieRepository);
     }
 }
