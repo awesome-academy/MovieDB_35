@@ -13,10 +13,11 @@ import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
 import com.framgia.moviedb_35.data.source.remote.MovieRemoteDataSource;
 import com.framgia.moviedb_35.screen.detail.fragment.BodyDetailFragment;
 import com.framgia.moviedb_35.screen.detail.fragment.HeaderDetailFragment;
+import com.framgia.moviedb_35.screen.youtube.YoutubeActivity;
 
 import static com.framgia.moviedb_35.screen.home.HomeViewModel.BUNDLE_KEY;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements DetailNavigator {
     private static final String EXTRAS_ARGS = "com.framgia.moviedb_35.screen.detail.EXTRAS_ARGS";
     private String mMovieId;
     private DetailViewModel mViewModel;
@@ -43,7 +44,8 @@ public class DetailActivity extends AppCompatActivity {
         mMovieId = getIntent().getBundleExtra(EXTRAS_ARGS).getString(BUNDLE_KEY);
         MovieRepository movieRepository = MovieRepository.getInstance(
                 MovieRemoteDataSource.getInstance(), MovieLocalDataSource.getInstance());
-        mViewModel = new DetailViewModel(Integer.valueOf(mMovieId), movieRepository);
+        mViewModel = new DetailViewModel(Integer.valueOf(mMovieId),
+                movieRepository, this);
     }
 
     private void setViewModelForFragment() {
@@ -53,5 +55,10 @@ public class DetailActivity extends AppCompatActivity {
         mBodyDetailFragment = (BodyDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_body_detail);
         mBodyDetailFragment.setViewModel(mViewModel);
+    }
+
+    @Override
+    public void startActivityYoutube(String youtubeKey) {
+        startActivity(YoutubeActivity.getIntent(this, youtubeKey));
     }
 }

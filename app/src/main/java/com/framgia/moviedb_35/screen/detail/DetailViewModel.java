@@ -3,6 +3,7 @@ package com.framgia.moviedb_35.screen.detail;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.databinding.ObservableList;
+import android.view.View;
 
 import com.framgia.moviedb_35.data.model.Actor;
 import com.framgia.moviedb_35.data.model.Company;
@@ -13,7 +14,6 @@ import com.framgia.moviedb_35.util.StringUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class DetailViewModel {
@@ -23,6 +23,7 @@ public class DetailViewModel {
     private static final String COMMA = " ,";
     private static final int NUMBER_ONE = 1;
     private String nameGenres = "";
+    private String mYoutubeKey = "";
     public final ObservableField<Movie> movieObservable = new ObservableField<>();
     public final ObservableList<Actor> actorObservable = new ObservableArrayList<>();
     public final ObservableList<Company> companiesObservable = new ObservableArrayList<>();
@@ -31,9 +32,12 @@ public class DetailViewModel {
     public final ObservableField<String> mObservableRelease = new ObservableField<>();
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private MovieRepository mMovieRepository;
+    private DetailNavigator mDetailNavigator;
 
-    public DetailViewModel(int movieId, MovieRepository movieRepository) {
+    public DetailViewModel(int movieId, MovieRepository movieRepository,
+                           DetailNavigator detailNavigator) {
         mMovieRepository = movieRepository;
+        mDetailNavigator = detailNavigator;
         loadMovie(movieId);
     }
 
@@ -41,18 +45,13 @@ public class DetailViewModel {
         Disposable disposable = mMovieRepository.getMovieDetail(movieId, APPEND_TO_MOVIE_DETAIL)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Movie>() {
-                    @Override
-                    public void accept(Movie movie) {
-                        movieObservable.set(movie);
-                        setMovieObservable(movie);
-                        actorObservable.addAll(movie.getCastResult().getCasts());
-                        companiesObservable.addAll(movie.getProductionCompanies());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                    }
+                .subscribe(movie -> {
+                    movieObservable.set(movie);
+                    setMovieObservable(movie);
+                    mYoutubeKey = movie.getVideoResult().getVideos().get(0).getKey();
+                    actorObservable.addAll(movie.getCastResult().getCasts());
+                    companiesObservable.addAll(movie.getProductionCompanies());
+                }, throwable -> {
                 });
         mCompositeDisposable.add(disposable);
     }
@@ -71,5 +70,9 @@ public class DetailViewModel {
                 .set(StringUtils.append(String.valueOf(movie.getRuntime()), MOVIE_MINUTES));
         mObservableRelease
                 .set(StringUtils.append(movie.getReleaseDate(), MOVIE_RELEASE));
+    }
+
+    public void itemClickListener(View view) {
+        mDetailNavigator.startActivityYoutube(mYoutubeKey);
     }
 }

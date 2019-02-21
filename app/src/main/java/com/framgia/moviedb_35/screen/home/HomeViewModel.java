@@ -2,17 +2,13 @@ package com.framgia.moviedb_35.screen.home;
 
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
-import android.databinding.ObservableInt;
 import android.databinding.ObservableList;
 
-import com.framgia.moviedb_35.R;
 import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
 import com.framgia.moviedb_35.util.Constants;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -24,6 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeViewModel {
     public static final String BUNDLE_KEY = "BUNDLE_KEY";
     public static final int GENRE_SOURCE = 0;
+    public static final String BUNDLE_YOUTUBE_KEY = "YOUTUBE_KEY";
     private MovieRepository mMovieRepository;
     public final ObservableList<Movie> popularMoviesObservable = new ObservableArrayList<>();
     public final ObservableList<Movie> upComingMoviesObservable = new ObservableArrayList<>();
@@ -51,12 +48,7 @@ public class HomeViewModel {
         Disposable disposable = mMovieRepository.getPopularMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Movie>>() {
-                    @Override
-                    public void accept(List<Movie> movies) throws Exception {
-                        popularMoviesObservable.addAll(movies);
-                    }
-                });
+                .subscribe((Consumer<List<Movie>>) popularMoviesObservable::addAll);
         mCompositeDisposable.add(disposable);
     }
 
@@ -64,12 +56,7 @@ public class HomeViewModel {
         Disposable disposable = mMovieRepository.getNowPlayingMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Movie>>() {
-                    @Override
-                    public void accept(List<Movie> movies) throws Exception {
-                        nowPlayingMoviesObservable.addAll(movies);
-                    }
-                });
+                .subscribe((Consumer<List<Movie>>) nowPlayingMoviesObservable::addAll);
         mCompositeDisposable.add(disposable);
     }
 
@@ -77,12 +64,7 @@ public class HomeViewModel {
         Disposable disposable = mMovieRepository.getUpComingMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Movie>>() {
-                    @Override
-                    public void accept(List<Movie> movies) throws Exception {
-                        upComingMoviesObservable.addAll(movies);
-                    }
-                });
+                .subscribe((Consumer<List<Movie>>) upComingMoviesObservable::addAll);
         mCompositeDisposable.add(disposable);
     }
 
@@ -90,12 +72,7 @@ public class HomeViewModel {
         Disposable disposable = mMovieRepository.getTopRateMovies(Constants.INDEX_UNIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Movie>>() {
-                    @Override
-                    public void accept(List<Movie> movies) throws Exception {
-                        topRateMoviesObservable.addAll(movies);
-                    }
-                });
+                .subscribe((Consumer<List<Movie>>) topRateMoviesObservable::addAll);
         mCompositeDisposable.add(disposable);
     }
 
@@ -103,18 +80,10 @@ public class HomeViewModel {
         Disposable disposable = mMovieRepository.getGenres()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Genre>>() {
-                    @Override
-                    public void accept(List<Genre> genres) {
-                        genresObservable.addAll(genres);
-                        isLoadingSuccess.set(true);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                        handleError(throwable.getMessage());
-                    }
-                });
+                .subscribe(genres -> {
+                    genresObservable.addAll(genres);
+                    isLoadingSuccess.set(true);
+                }, throwable -> handleError(throwable.getMessage()));
         mCompositeDisposable.add(disposable);
     }
 

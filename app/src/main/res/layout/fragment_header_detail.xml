@@ -3,6 +3,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.framgia.moviedb_35.screen.detail.DetailViewModel" />
@@ -17,6 +19,7 @@
             android:id="@+id/image_back_ground"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_250"
+            android:onClick="@{viewModel::itemClickListener}"
             android:scaleType="fitXY"
             android:src="@drawable/splash_screen2"
             app:imageUrl="@{viewModel.movieObservable.get().getBackdropPath()}"

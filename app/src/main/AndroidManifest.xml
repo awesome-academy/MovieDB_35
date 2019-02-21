@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".screen.detail.DetailActivity" />
+        <activity android:name=".screen.youtube.YoutubeActivity" />
     </application>
 
 </manifest>

@@ -56,25 +56,25 @@ public class HomeFragment extends Fragment implements CategoriesAdapter.ItemClic
     private void setAdapter() {
         RecyclerView popularRecycler = mHomeBinding.recyclerPopular;
         setLayoutManager(popularRecycler);
-        mPopularAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
+        mPopularAdapter = new CategoriesAdapter(new ArrayList<>(0));
         mPopularAdapter.setItemClickListener(this);
         popularRecycler.setAdapter(mPopularAdapter);
 
         RecyclerView nowPlayingRecycler = mHomeBinding.recyclerNowPlaying;
         setLayoutManager(nowPlayingRecycler);
-        mNowPlayingAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
+        mNowPlayingAdapter = new CategoriesAdapter(new ArrayList<>(0));
         mNowPlayingAdapter.setItemClickListener(this);
         nowPlayingRecycler.setAdapter(mNowPlayingAdapter);
 
         RecyclerView topRateRecycler = mHomeBinding.recyclerTopRate;
         setLayoutManager(topRateRecycler);
-        mTopRateAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
+        mTopRateAdapter = new CategoriesAdapter(new ArrayList<>(0));
         mTopRateAdapter.setItemClickListener(this);
         topRateRecycler.setAdapter(mTopRateAdapter);
 
         RecyclerView upComingRecycler = mHomeBinding.recyclerUpComing;
         setLayoutManager(upComingRecycler);
-        mUpComingAdapter = new CategoriesAdapter(new ArrayList<Movie>(0));
+        mUpComingAdapter = new CategoriesAdapter(new ArrayList<>(0));
         mUpComingAdapter.setItemClickListener(this);
         upComingRecycler.setAdapter(mUpComingAdapter);
     }
