@@ -92,7 +92,6 @@
             android:elevation="@dimen/dp_8"
             android:src="@drawable/ic_favorite"
             app:animationImageView="@{appbar}"
-            app:border_width="@dimen/dp_2"
             app:layout_anchor="@id/title_container"
             app:layout_anchorGravity="top|center_horizontal"
             app:layout_scrollFlags="scroll" />
