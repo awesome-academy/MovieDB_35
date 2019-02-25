@@ -65,6 +65,6 @@ public class DetailActivity extends AppCompatActivity implements DetailNavigator
 
     @Override
     public void startActivityActor(String key) {
-        startActivity(ActorActivity.getIntent(this));
+        startActivity(ActorActivity.getIntent(this,key));
     }
 }

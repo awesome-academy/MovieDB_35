@@ -14,12 +14,19 @@ import android.support.v7.widget.Toolbar;
 
 import com.framgia.moviedb_35.R;
 import com.framgia.moviedb_35.databinding.ActivityActorBinding;
+import com.framgia.moviedb_35.screen.actor.fragment.MoviesFragment;
 
 public class ActorActivity extends AppCompatActivity {
+    private static final String BUNDLE_ACTOR_KEY = "BUNDLE_ACTOR_KEY";
+    private static final String EXTRAS_ARGS = "com.framgia.moviedb_35.screen.detail.EXTRAS_ARGS";
     ActivityActorBinding mActorBinding;
+    public static String mActorId;
 
-    public static Intent getIntent(Context context) {
+    public static Intent getIntent(Context context, String actorId) {
         Intent intent = new Intent(context, ActorActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(BUNDLE_ACTOR_KEY, actorId);
+        intent.putExtra(EXTRAS_ARGS, bundle);
         return intent;
     }
 
@@ -29,13 +36,15 @@ public class ActorActivity extends AppCompatActivity {
         mActorBinding = DataBindingUtil.setContentView(this, R.layout.activity_actor);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-        ViewPager viewPager = findViewById(R.id.viewpager_actor);
+        ViewPager viewPager = findViewById(R.id.view_pager_actor);
 
         Toolbar toolbar = findViewById(R.id.toolbar_actor);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         viewPager.setAdapter(new TabsAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
+
+        mActorId = getIntent().getExtras().getBundle(EXTRAS_ARGS).getString(BUNDLE_ACTOR_KEY);
     }
 
     private static class TabsAdapter extends FragmentPagerAdapter {
@@ -52,7 +61,7 @@ public class ActorActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int i) {
-            return MoviesFragment.newInstance();
+            return MoviesFragment.newInstance(mActorId);
         }
 
         @Override

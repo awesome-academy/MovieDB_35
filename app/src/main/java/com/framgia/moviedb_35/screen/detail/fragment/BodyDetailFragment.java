@@ -13,13 +13,15 @@ import android.view.ViewGroup;
 
 import com.framgia.moviedb_35.R;
 import com.framgia.moviedb_35.databinding.FragmentBodyDetailBinding;
+import com.framgia.moviedb_35.screen.actor.ActorActivity;
 import com.framgia.moviedb_35.screen.detail.DetailViewModel;
 import com.framgia.moviedb_35.screen.detail.adapter.CharacterAdapter;
 import com.framgia.moviedb_35.screen.detail.adapter.ProductionAdapter;
 
 import java.util.ArrayList;
 
-public class BodyDetailFragment extends Fragment {
+public class BodyDetailFragment extends Fragment
+        implements CharacterAdapter.OnItemClickListener, ProductionAdapter.OnItemClickListener {
     private DetailViewModel mViewModel;
     private CharacterAdapter mCharacterAdapter;
     private ProductionAdapter mProductionAdapter;
@@ -37,12 +39,12 @@ public class BodyDetailFragment extends Fragment {
     private void setAdapter() {
         RecyclerView actorsRecycler = mFragmentBodyDetailBinding.recycleCastAndCharacter;
         setLayoutManager(actorsRecycler);
-        mCharacterAdapter = new CharacterAdapter(new ArrayList<>(0));
+        mCharacterAdapter = new CharacterAdapter(new ArrayList<>(0), this);
         actorsRecycler.setAdapter(mCharacterAdapter);
 
         RecyclerView companiesRecycler = mFragmentBodyDetailBinding.recycleProduction;
         setLayoutManager(companiesRecycler);
-        mProductionAdapter = new ProductionAdapter(new ArrayList<>(0));
+        mProductionAdapter = new ProductionAdapter(new ArrayList<>(0), this);
         companiesRecycler.setAdapter(mProductionAdapter);
     }
 
@@ -61,5 +63,14 @@ public class BodyDetailFragment extends Fragment {
     public void setViewModel(DetailViewModel detailViewModel) {
         mViewModel = detailViewModel;
         mFragmentBodyDetailBinding.setViewModel(mViewModel);
+    }
+
+    @Override
+    public void actorClickListener(String key) {
+        startActivity(ActorActivity.getIntent(getActivity(), key));
+    }
+
+    @Override
+    public void produceClickListener() {
     }
 }

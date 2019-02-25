@@ -15,9 +15,11 @@ import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.ViewHolder> {
     private List<Actor> mActors;
+    private OnItemClickListener mOnItemClickListener;
 
-    public CharacterAdapter(List<Actor> actors) {
+    public CharacterAdapter(List<Actor> actors, OnItemClickListener OnItemClickListener) {
         mActors = actors;
+        mOnItemClickListener = OnItemClickListener;
     }
 
     @NonNull
@@ -26,7 +28,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
         ItemActorBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.getContext()), R.layout.item_actor,
                 viewGroup, false);
-        return new ViewHolder(binding);
+        return new ViewHolder(mOnItemClickListener, binding);
     }
 
     @Override
@@ -48,17 +50,24 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private ItemActorBinding mItemActorBinding;
         private ItemDetailViewModel mItemDetailViewModel;
+        private OnItemClickListener mOnItemClickListener;
 
-        public ViewHolder(ItemActorBinding binding) {
+        public ViewHolder(OnItemClickListener OnItemClickListener, ItemActorBinding binding) {
             super(binding.getRoot());
             mItemActorBinding = binding;
-            mItemDetailViewModel = new ItemDetailViewModel();
+            mOnItemClickListener = OnItemClickListener;
+            mItemDetailViewModel = new ItemDetailViewModel(mOnItemClickListener);
             mItemActorBinding.setItemViewModel(mItemDetailViewModel);
         }
 
         private void bindData(Actor actor) {
             mItemDetailViewModel.setActor(actor);
             mItemActorBinding.executePendingBindings();
+            mItemDetailViewModel.setActorKey(String.valueOf(actor.getId()));
         }
+    }
+
+    public interface OnItemClickListener {
+        void actorClickListener(String key);
     }
 }

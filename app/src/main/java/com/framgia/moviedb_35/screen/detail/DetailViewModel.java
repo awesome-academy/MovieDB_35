@@ -48,7 +48,8 @@ public class DetailViewModel {
                 .subscribe(movie -> {
                     movieObservable.set(movie);
                     setMovieObservable(movie);
-                    mYoutubeKey = movie.getVideoResult().getVideos().get(0).getKey();
+                    if (movie.getVideoResult().getVideos().size() != 0)
+                        mYoutubeKey = movie.getVideoResult().getVideos().get(0).getKey();
                     actorObservable.addAll(movie.getCastResult().getCasts());
                     companiesObservable.addAll(movie.getProductionCompanies());
                 }, throwable -> {

@@ -4,6 +4,8 @@ import com.framgia.moviedb_35.BuildConfig;
 import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.source.MovieDataSource;
+import com.framgia.moviedb_35.data.source.remote.response.CategoryData;
+import com.framgia.moviedb_35.data.source.remote.response.GenreResult;
 import com.framgia.moviedb_35.data.source.remote.service.RetrofitRequest;
 import com.framgia.moviedb_35.data.source.remote.service.SettingRetrofitClient;
 
@@ -29,28 +31,28 @@ public class MovieRemoteDataSource implements MovieDataSource.Remote {
 
     @Override
     public Single<List<Movie>> getPopularMovies(int page) {
-        return mRetrofitRequest.getPopularMovies(page).map(categoryData -> categoryData.getMovies());
+        return mRetrofitRequest.getPopularMovies(page).map(CategoryData::getMovies);
     }
 
     @Override
     public Single<List<Movie>> getNowPlayingMovies(int page) {
-        return mRetrofitRequest.getNowPlayingMovies(page).map(categoryData -> categoryData.getMovies());
+        return mRetrofitRequest.getNowPlayingMovies(page).map(CategoryData::getMovies);
     }
 
     @Override
     public Single<List<Movie>> getUpComingMovies(int page) {
-        return mRetrofitRequest.getUpComingMovies(page).map(categoryData -> categoryData.getMovies());
+        return mRetrofitRequest.getUpComingMovies(page).map(CategoryData::getMovies);
     }
 
     @Override
     public Single<List<Movie>> getTopRateMovies(int page) {
-        return mRetrofitRequest.getTopRateMovies(page).map(categoryData -> categoryData.getMovies());
+        return mRetrofitRequest.getTopRateMovies(page).map(CategoryData::getMovies);
     }
 
     @Override
     public Single<List<Genre>> getGenres() {
         return mRetrofitRequest.getGenre()
-                .map(genreResult -> genreResult.getGenres());
+                .map(GenreResult::getGenres);
     }
 
     @Override
@@ -61,12 +63,12 @@ public class MovieRemoteDataSource implements MovieDataSource.Remote {
     @Override
     public Single<List<Movie>> getMoviesByProduce(int page, String produceId) {
         return mRetrofitRequest.getMoviesByProduce(page, produceId)
-                .map(categoryResult -> categoryResult.getMovies());
+                .map(CategoryData::getMovies);
     }
 
     @Override
     public Single<List<Movie>> getMoviesByActor(int page, String actorId) {
         return mRetrofitRequest.getMoviesByActor(page, actorId)
-                .map(categoryResult -> categoryResult.getMovies());
+                .map(CategoryData::getMovies);
     }
 }

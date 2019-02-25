@@ -7,9 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.framgia.moviedb_35.R;
-import com.framgia.moviedb_35.data.model.Actor;
 import com.framgia.moviedb_35.data.model.Company;
-import com.framgia.moviedb_35.databinding.ItemActorBinding;
 import com.framgia.moviedb_35.databinding.ItemProductionBinding;
 import com.framgia.moviedb_35.screen.detail.ItemDetailViewModel;
 
@@ -17,9 +15,11 @@ import java.util.List;
 
 public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.ViewHolder> {
     private List<Company> mCompanies;
+    private OnItemClickListener mOnItemClickListener;
 
-    public ProductionAdapter(List<Company> companies) {
+    public ProductionAdapter(List<Company> companies, OnItemClickListener onItemClickListener) {
         mCompanies = companies;
+        mOnItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -28,7 +28,7 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Vi
         ItemProductionBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.getContext()), R.layout.item_production,
                 viewGroup, false);
-        return new ViewHolder(binding);
+        return new ViewHolder(mOnItemClickListener, binding);
     }
 
     @Override
@@ -48,13 +48,16 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        String produtionKey = "";
         private ItemProductionBinding mItemProductionBinding;
         private ItemDetailViewModel mItemDetailViewModel;
+        private OnItemClickListener mOnItemClickListener;
 
-        public ViewHolder(ItemProductionBinding binding) {
+        public ViewHolder(OnItemClickListener onItemClickListener, ItemProductionBinding binding) {
             super(binding.getRoot());
             mItemProductionBinding = binding;
-            mItemDetailViewModel = new ItemDetailViewModel();
+            mOnItemClickListener = onItemClickListener;
+            mItemDetailViewModel = new ItemDetailViewModel(mOnItemClickListener, produtionKey);
             mItemProductionBinding.setViewModel(mItemDetailViewModel);
         }
 
@@ -62,5 +65,9 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Vi
             mItemDetailViewModel.setCompany(company);
             mItemProductionBinding.executePendingBindings();
         }
+    }
+
+    public interface OnItemClickListener {
+        void produceClickListener();
     }
 }

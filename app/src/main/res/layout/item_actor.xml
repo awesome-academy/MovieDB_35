@@ -18,6 +18,7 @@
             android:layout_width="@dimen/dp_100"
             android:layout_height="@dimen/dp_140"
             android:layout_margin="@dimen/dp_10"
+            android:onClick="@{itemViewModel::actorClickListener}"
             android:scaleType="fitXY"
             app:imageUrl="@{itemViewModel.mObservableActor.get().getProfilePath()}"
             app:layout_constraintLeft_toLeftOf="parent"
