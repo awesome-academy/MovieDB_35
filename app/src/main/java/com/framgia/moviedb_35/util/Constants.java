@@ -5,4 +5,5 @@ public class Constants {
     public static final int FIRST_PAGE = 1;
     public static final String IMAGE_LINK = "https://image.tmdb.org/t/p/w";
     public static final String SLASH = "/";
+    public static final int FIRST_PAGE = 1;
 }
