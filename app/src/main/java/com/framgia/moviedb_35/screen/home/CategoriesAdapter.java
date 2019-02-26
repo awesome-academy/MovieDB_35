@@ -67,7 +67,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         notifyDataSetChanged();
     }
 
-    interface ItemClickListener {
+    public interface ItemClickListener {
         void onMovieItemClick(Movie movie);
     }
 }

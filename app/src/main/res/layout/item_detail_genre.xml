@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/tools"
-    app:ignore="NamespaceTypo">
+<layout>
 
     <data>
         <variable
-            name="itemViewModel"
-            type="com.framgia.moviedb_35.screen.detailgenre.MovieViewModel" />
-        <variable
             name="viewModel"
-            type="com.framgia.moviedb_35.screen.detailgenre.ItemDetailGenreViewModel" />
+            type="com.framgia.moviedb_35.screen.detailgenre.MovieViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="@{viewModel::onItemClicked}">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
             android:id="@+id/card_view_image"
-            android:layout_width="@dimen/dp_150"
+            android:layout_width="@dimen/dp_140"
             android:layout_height="@dimen/dp_200"
             card_view:cardCornerRadius="@dimen/dp_8"
             card_view:cardElevation="@dimen/dp_8"
@@ -31,8 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/splash_screen"
-                app:imageUrl="@{itemViewModel.movieObservable.get(0).getBackdropPath()}" />
+                android:src="@drawable/splash_screen"/>
 
         </android.support.v7.widget.CardView>
 
@@ -41,7 +35,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@{viewModel.genreObservable.name}"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
             android:textStyle="bold"
