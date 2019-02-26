@@ -12,6 +12,7 @@ import com.framgia.moviedb_35.data.source.remote.service.SettingRetrofitClient;
 import java.util.List;
 
 import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 public class MovieRemoteDataSource implements MovieDataSource.Remote {
     private static final String API_KEY = BuildConfig.API_KEY;
@@ -58,6 +59,12 @@ public class MovieRemoteDataSource implements MovieDataSource.Remote {
     @Override
     public Single<Movie> getMovieDetail(int movieId, String append) {
         return mRetrofitRequest.getMovieDetail(movieId, append);
+    }
+
+    @Override
+    public Single<List<Movie>> getMoviesByGenre(int page, String genreId) {
+        return mRetrofitRequest.getMoviesByGenre(page, genreId)
+                .map(categoryResult -> categoryResult.getMovies());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.framgia.moviedb_35.screen.genres;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.framgia.moviedb_35.data.repository.MovieRepository;
 import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
 import com.framgia.moviedb_35.data.source.remote.MovieRemoteDataSource;
 import com.framgia.moviedb_35.databinding.FragmentGenresBinding;
+import com.framgia.moviedb_35.screen.detailgenre.DetailGenreActivity;
 import com.framgia.moviedb_35.screen.home.HomeViewModel;
 
 import java.util.ArrayList;
@@ -64,7 +66,8 @@ public class GenresFragment extends Fragment implements GenreNavigator, GenresAd
 
     @Override
     public void showMovies(Genre genre, int getBy) {
-
+        Intent intent = DetailGenreActivity.getIntent(getActivity(), genre, getBy);
+        startActivity(intent);
     }
 
     @Override

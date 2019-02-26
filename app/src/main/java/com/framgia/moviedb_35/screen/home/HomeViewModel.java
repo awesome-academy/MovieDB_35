@@ -19,8 +19,15 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel {
     public static final String BUNDLE_KEY = "BUNDLE_KEY";
-    public static final int GENRE_SOURCE = 0;
+    public static final String BUNDLE_SOURCE = "BUNDLE_SOURCE";
+    public static final String BUNDLE_NAME = "BUNDLE_NAME";
     public static final String BUNDLE_YOUTUBE_KEY = "YOUTUBE_KEY";
+
+    public static final int GENRE_SOURCE = 0;
+    public static final int CATEGORY_SOURCE = 1;
+    public static final int PRODUCE_SOURCE = 2;
+    public static final int ACTOR_SOURCE = 3;
+
     private MovieRepository mMovieRepository;
     public final ObservableList<Movie> popularMoviesObservable = new ObservableArrayList<>();
     public final ObservableList<Movie> upComingMoviesObservable = new ObservableArrayList<>();

@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.framgia.moviedb_35.screen.genres.ItemGenresListViewModel" />
+            type="com.framgia.moviedb_35.screen.detailgenre.MovieViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_20"
-            android:text="@{viewModel.mGenresObservableField.name}"
+            android:text="@{viewModel.genreObservable.name}"
             android:textColor="@android:color/black"
             android:textSize="@dimen/sp_20"
             app:layout_constraintEnd_toEndOf="parent"

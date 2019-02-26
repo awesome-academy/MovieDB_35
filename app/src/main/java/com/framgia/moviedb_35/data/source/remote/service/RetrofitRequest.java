@@ -28,14 +28,18 @@ public interface RetrofitRequest {
 
     @GET("/3/discover/movie")
     Single<CategoryData> getMoviesByProduce(@Query("page") int page,
-                                              @Query("with_companies") String companyId);
+                                            @Query("with_companies") String companyId);
 
     @GET("/3/discover/movie")
     Single<CategoryData> getMoviesByActor(@Query("page") int page,
-                                            @Query("with_cast") String actorId);
+                                          @Query("with_cast") String actorId);
 
 
     @GET("/3/genre/movie/list")
     Single<GenreResult> getGenre();
+
+    @GET("/3/discover/movie")
+    Single<CategoryData> getMoviesByGenre(@Query("page") int page,
+                                          @Query("with_genres") String genreId);
 
 }
