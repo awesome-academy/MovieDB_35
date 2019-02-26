@@ -66,7 +66,7 @@ public class BindingUtils {
         }
     }
 
-    @BindingAdapter("app:imageUrl")
+    @BindingAdapter("imageUrl")
     public static void setImage(ImageView imageView, String url) {
         if (url == null || url.isEmpty()) {
             imageView.setImageResource(R.drawable.ic_loading);
@@ -81,7 +81,7 @@ public class BindingUtils {
                 .into(imageView);
     }
 
-    @BindingAdapter("app:bindGenres")
+    @BindingAdapter("bindGenres")
     public static void setGenresForRecyclerView(RecyclerView recyclerView, List<Genre> genres) {
         GenresAdapter adapter = (GenresAdapter) recyclerView.getAdapter();
         if (adapter != null) {

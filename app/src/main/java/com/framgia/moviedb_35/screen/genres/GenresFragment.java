@@ -79,5 +79,5 @@ public class GenresFragment extends Fragment implements GenreNavigator, GenresAd
         MovieRepository movieRepository = MovieRepository.getInstance(
                 MovieRemoteDataSource.getInstance(), MovieLocalDataSource.getInstance());
         mViewModel = new HomeViewModel(movieRepository);
-    }
+}
 }

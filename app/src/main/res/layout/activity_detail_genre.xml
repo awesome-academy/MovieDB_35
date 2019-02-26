@@ -6,6 +6,9 @@
         <variable
             name="viewModel"
             type="com.framgia.moviedb_35.screen.detailgenre.MovieViewModel" />
+        <variable
+            name="itemViewModel"
+            type="com.framgia.moviedb_35.screen.genres.ItemGenresListViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_back"
+            android:text="@{viewModel.titleGenreObservable}"
             android:textColor="@android:color/black"
             android:textSize="@dimen/sp_25"
             app:layout_constraintBottom_toBottomOf="@+id/image_back_button"
@@ -40,7 +43,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_20"
-            android:text="@{viewModel.genreObservable.name}"
             android:textColor="@android:color/black"
             android:textSize="@dimen/sp_20"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +57,7 @@
             android:layout_marginEnd="@dimen/dp_20"
             android:layout_marginBottom="@dimen/dp_8"
             app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            app:bindMovies="@{viewModel.movieObservable}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
