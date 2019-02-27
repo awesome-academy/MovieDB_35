@@ -11,16 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.framgia.moviedb_35.R;
+import com.framgia.moviedb_35.data.model.Movie;
 import com.framgia.moviedb_35.data.repository.MovieRepository;
 import com.framgia.moviedb_35.data.source.local.MovieLocalDataSource;
 import com.framgia.moviedb_35.data.source.remote.MovieRemoteDataSource;
 import com.framgia.moviedb_35.databinding.FragmentActorMovieBinding;
 import com.framgia.moviedb_35.screen.actor.ActorAdapter;
 import com.framgia.moviedb_35.screen.actor.ActorViewModel;
+import com.framgia.moviedb_35.screen.detail.DetailActivity;
 
 import java.util.ArrayList;
 
-public class MoviesFragment extends Fragment {
+public class MoviesFragment extends Fragment implements ActorAdapter.itemClicked {
     private static final String BUNDLE_ACTOR_KEY = "BUNDLE_ACTOR_KEY";
     private static final String EXTRAS_ARGS = "com.framgia.moviedb_35.screen.detail.EXTRAS_ARGS";
     private FragmentActorMovieBinding mActorBinding;
@@ -63,7 +65,12 @@ public class MoviesFragment extends Fragment {
 
     private void setAdapter() {
         RecyclerView actorsRecycler = mActorBinding.recyclerActorMovie;
-        mActorAdapter = new ActorAdapter(new ArrayList<>(0));
+        mActorAdapter = new ActorAdapter(new ArrayList<>(0),this);
         actorsRecycler.setAdapter(mActorAdapter);
+    }
+
+    @Override
+    public void onClickListener(Movie movie) {
+        startActivity(DetailActivity.getIntent(getContext(), movie));
     }
 }

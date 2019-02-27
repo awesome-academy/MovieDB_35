@@ -14,9 +14,11 @@ import java.util.List;
 
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> {
     private List<Movie> mMovies;
+    private itemClicked mItemClicked;
 
-    public ActorAdapter(List<Movie> movies) {
+    public ActorAdapter(List<Movie> movies, itemClicked itemClicked) {
         mMovies = movies;
+        mItemClicked = itemClicked;
     }
 
     @NonNull
@@ -30,7 +32,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ActorAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.bindData(mMovies.get(i));
+        viewHolder.bindData(mMovies.get(i),mItemClicked);
     }
 
     @Override
@@ -49,8 +51,8 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> 
             mActorMovieBinding.setItemViewModel(itemActorViewModel);
         }
 
-        public void bindData(Movie movie) {
-            itemActorViewModel.setMovie(movie);
+        public void bindData(Movie movie, itemClicked itemClicked) {
+            itemActorViewModel.setMovie(movie, itemClicked);
             mActorMovieBinding.executePendingBindings();
         }
     }
@@ -59,5 +61,9 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> 
         mMovies.clear();
         mMovies.addAll(movies);
         notifyDataSetChanged();
+    }
+
+    public interface itemClicked {
+        void onClickListener(Movie movie);
     }
 }

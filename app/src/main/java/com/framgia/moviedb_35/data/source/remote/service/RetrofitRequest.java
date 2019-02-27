@@ -1,6 +1,7 @@
 package com.framgia.moviedb_35.data.source.remote.service;
 
 import com.framgia.moviedb_35.data.model.Movie;
+import com.framgia.moviedb_35.data.model.Person;
 import com.framgia.moviedb_35.data.source.remote.response.CategoryData;
 import com.framgia.moviedb_35.data.source.remote.response.GenreResult;
 
@@ -34,6 +35,9 @@ public interface RetrofitRequest {
     Single<CategoryData> getMoviesByActor(@Query("page") int page,
                                           @Query("with_cast") String actorId);
 
+
+    @GET("/3/person/{id}")
+    Single<Person> getActorInfo(@Path("id") int actorId);
 
     @GET("/3/genre/movie/list")
     Single<GenreResult> getGenre();

@@ -3,6 +3,7 @@ package com.framgia.moviedb_35.data.source.remote;
 import com.framgia.moviedb_35.BuildConfig;
 import com.framgia.moviedb_35.data.model.Genre;
 import com.framgia.moviedb_35.data.model.Movie;
+import com.framgia.moviedb_35.data.model.Person;
 import com.framgia.moviedb_35.data.source.MovieDataSource;
 import com.framgia.moviedb_35.data.source.remote.response.CategoryData;
 import com.framgia.moviedb_35.data.source.remote.response.GenreResult;
@@ -77,5 +78,10 @@ public class MovieRemoteDataSource implements MovieDataSource.Remote {
     public Single<List<Movie>> getMoviesByActor(int page, String actorId) {
         return mRetrofitRequest.getMoviesByActor(page, actorId)
                 .map(CategoryData::getMovies);
+    }
+
+    @Override
+    public Single<Person> getActorInfo(String actorId) {
+        return mRetrofitRequest.getActorInfo(Integer.valueOf(actorId));
     }
 }

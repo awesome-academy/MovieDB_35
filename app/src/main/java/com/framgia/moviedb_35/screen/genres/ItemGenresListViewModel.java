@@ -18,7 +18,7 @@ public class ItemGenresListViewModel extends BaseObservable {
         mGenresObservableField.set(genre);
     }
 
-    public void onItemClicked(View view) {
+    public void onItemClickListener(View view) {
         if (mItemClickListener == null || mGenresObservableField.get() == null) {
             return;
         }
